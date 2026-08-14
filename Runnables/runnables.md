@@ -107,3 +107,34 @@ Every runnable follows commom interface.
 As they follow common interface, they can be connected easily even in complex workflow.
 
 The workflow created is itself a runnable.
+
+## Types of runnables
+Runnables in LangChain are modular units of computation that implement a standardized interface, allowing components like models, prompts, and parsers to be composed into scalable pipelines. 
+They are broadly classified into two main categories: Task-Specific Runnables and Runnable Primitives. 
+
+# 1. Task-Specific Runnables
+Task-Specific Runnables are core components that perform distinct operations within a workflow.  These include:
+
+-> LLMs/Chat Models (e.g., ChatOpenAI) for generating responses. 
+-> Prompt Templates for formatting user input. 
+-> Retrievers for fetching relevant documents. 
+-> Output Parsers for structuring LLM output. 
+-> Tools for executing external functions or API calls.
+
+# 2. Runnable Primitives
+Runnable Primitives act as control flow operators that orchestrate how multiple Runnables interact, without performing specific tasks themselves.  Key primitives include:
+
+-> Runnable Sequence: Executes steps sequentially, passing the output of one step as the input to the next. 
+It is a sequential chain of runnables in Langchain that executes each step one after another, passing the output of one step as the input to the next.
+
+-> Runnable Parallel: Runs multiple Runnables simultaneously with the same input, returning a dictionary of outputs. 
+Each runnable recieves the same input and processes it independently, producing a dictionary of outputs.
+
+-> Runnable Lambda: Wraps custom Python functions to act as middleware between different AI components, enabling preprocessing, transformation, AAPI calls, filtering, or postprocessing in langchain workflow. 
+Allows you to apply custom Python functions within an AI pipeline.
+
+-> Runnable Passthrough: Returns input unchanged, often used to preserve data in parallel or branching workflows. 
+Returns the input as output without modifying it.
+
+-> Runnable Branch: Controls flow management by routing inputs to different branches based on conditions. 
+It functions like an if/elif/else block for chains.
